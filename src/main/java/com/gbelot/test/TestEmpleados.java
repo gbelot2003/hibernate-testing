@@ -14,14 +14,12 @@ public class TestEmpleados {
 
 	@SuppressWarnings("unused")
 	private static EntityManager manager;
-	
+		
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("aplicacion");
 	
 	public static void main(String[] args) {
-	
 		insertInicial();
-		imprimirTodo();
-		
+		imprimirTodo();	
 	}
 
 	private static void insertInicial() {
