@@ -2,7 +2,9 @@ package com.gbelot.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,7 +27,20 @@ public class Direccion {
 	@Column()
 	private String pais;
 	
+	@OneToOne(mappedBy="empledo", fetch = FetchType.LAZY)
+	private Empledo empledo; 
+	
 	public Direccion() {}
+
+	public Direccion(Long id, String direccion, String departamento, String municipio, String pais, Empledo empledo) {
+		super();
+		this.id = id;
+		this.direccion = direccion;
+		this.departamento = departamento;
+		this.municipio = municipio;
+		this.pais = pais;
+		this.empledo = empledo;
+	}
 
 	public Direccion(Long id, String direccion, String departamento, String municipio, String pais) {
 		this.id = id;
@@ -74,11 +89,19 @@ public class Direccion {
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
+	
+	public Empledo getEmpledo() {
+		return empledo;
+	}
+
+	public void setEmpledo(Empledo empledo) {
+		this.empledo = empledo;
+	}
 
 	@Override
 	public String toString() {
 		return "Direccion [id=" + id + ", direccion=" + direccion + ", departamento=" + departamento + ", municipio="
-				+ municipio + ", pais=" + pais + "]";
+				+ municipio + ", pais=" + pais + ", empledo=" + empledo + "]";
 	}
 	
 	
