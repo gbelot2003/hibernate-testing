@@ -24,8 +24,10 @@ public class TestEmpleados {
 
 	private static void insertInicial() {
 		EntityManager man = emf.createEntityManager();
-		Empledo e = new Empledo(10L, "Perez", "Gerardo", LocalDate.of(1979, 5, 10),
-				new Direccion(15L, "Barrio Altos de la Hoya", "FM", "Tegucigalpa", "Honduras"));
+		
+		Direccion dir = new Direccion(15L, "Barrio Altos de la Hoya", "FM", "Tegucigalpa", "Honduras");
+		
+		Empledo e = new Empledo(10L, "Perez", "Gerardo", LocalDate.of(1979, 5, 10), dir);
 
 		man.getTransaction().begin();
 		man.persist(e);
