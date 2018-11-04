@@ -1,5 +1,7 @@
 package com.gbelot.test;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -41,6 +43,13 @@ public class TestAutores {
 	
 	static void imprimirDatos() {
 		EntityManager em = emf.createEntityManager();
+		
+		Autor autor = em.find(Autor.class, 3L);
+		
+		List<Libro> libros = autor.getLibros();
+		
+		System.out.println(autor);
+		System.out.println(libros);
 		
 		em.close();
 	}

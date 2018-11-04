@@ -10,6 +10,9 @@
 	<persistence-unit name="aplicacion">
 
 		<class>com.gbelot.models.Empledo</class>
+		<class>com.gbelot.models.Autor</class>
+		<class>com.gbelot.models.Libro</class>
+		<class>com.gbelot.models.Direccion</class>
 
 		<properties>
 			<!-- Estas propiedades son de javax para configurar comunicación con DB 
