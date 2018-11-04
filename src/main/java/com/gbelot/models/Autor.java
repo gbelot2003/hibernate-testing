@@ -3,9 +3,11 @@ package com.gbelot.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +24,8 @@ public class Autor {
 	@Column
 	private String nacionalidad;
 	
+	//Por defecto la relacion OneToMany es Lazy
+	@OneToMany(mappedBy = "autor", cascade = {CascadeType.ALL})
 	private List<Libro> libros = new ArrayList<>();
 	
 	public Autor() {}
