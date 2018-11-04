@@ -47,9 +47,11 @@ public class TestAutores {
 		Autor autor = em.find(Autor.class, 3L);
 		
 		List<Libro> libros = autor.getLibros();
-		
+		for (Libro libro: libros) {
+			System.out.println(libro.toString());
+		}
+				
 		System.out.println(autor);
-		System.out.println(libros);
 		
 		em.close();
 	}
