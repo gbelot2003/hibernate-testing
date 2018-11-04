@@ -1,12 +1,14 @@
 package com.gbelot.models;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,8 +27,9 @@ public class Autor {
 	private String nacionalidad;
 	
 	//Por defecto la relacion OneToMany es Lazy
-	@OneToMany(mappedBy = "autor", cascade = {CascadeType.ALL})
-	private List<Libro> libros = new ArrayList<>();
+	@OneToMany
+	@JoinTable(name="autor_libros", joinColumns=@JoinColumn(name="autor_id"), inverseJoinColumns=@JoinColumn(name="libros_id"))
+	private Collection<Libro> libros = new ArrayList<Libro>(); 
 	
 	public Autor() {}
 
@@ -61,11 +64,11 @@ public class Autor {
 		this.nacionalidad = nacionalidad;
 	}
 
-	public List<Libro> getLibros() {
+	public Collection<Libro> getLibros() {
 		return libros;
 	}
 
-	public void setLibros(List<Libro> libros) {
+	public void setLibros(Collection<Libro> libros) {
 		this.libros = libros;
 	}
 
@@ -74,6 +77,7 @@ public class Autor {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((libros == null) ? 0 : libros.hashCode());
 		result = prime * result + ((nacionalidad == null) ? 0 : nacionalidad.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
@@ -92,6 +96,11 @@ public class Autor {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (libros == null) {
+			if (other.libros != null)
+				return false;
+		} else if (!libros.equals(other.libros))
 			return false;
 		if (nacionalidad == null) {
 			if (other.nacionalidad != null)

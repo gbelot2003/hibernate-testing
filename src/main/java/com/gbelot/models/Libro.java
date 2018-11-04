@@ -1,11 +1,8 @@
 package com.gbelot.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -20,18 +17,16 @@ public class Libro {
 	@Column
 	private String titulo;
 	
-	@ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
-	@JoinColumn(name = "autor_id")
+	@ManyToOne
 	private Autor autor;
 
 	public Libro() {
 
 	}
 
-	public Libro(Long id, String titulo, Autor autor) {
+	public Libro(Long id, String titulo) {
 		this.id = id;
 		this.titulo = titulo;
-		this.autor = autor;
 	}
 
 	public Long getId() {
@@ -50,13 +45,6 @@ public class Libro {
 		this.titulo = titulo;
 	}
 
-	public Autor getAutor() {
-		return autor;
-	}
-
-	public void setAutor(Autor autor) {
-		this.autor = autor;
-	}
 
 	@Override
 	public int hashCode() {
