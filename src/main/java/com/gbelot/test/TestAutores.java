@@ -24,16 +24,21 @@ public class TestAutores {
 		Autor autor1 = new Autor(1L, "Salvador Dali", "España");
 		Autor autor2 = new Autor(2L, "Dante Aligery", "Italia");
 		Autor autor3 = new Autor(3L, "Robert Kyyosaky", "USA");
-
+		
 		Libro libro1 = new Libro(1L, "De los Males del Arte");
 		Libro libro2 = new Libro(2L, "La Divina Comedia");
 		Libro libro3 = new Libro(3L, "Padre Rico, Padre pobre");
-		Libro libro4 = new Libro(4L, "Catch Flow");
+		Libro libro4 = new Libro(4L, "Catch Flow"); 
 				
 		autor1.getLibros().add(libro1);
 		autor2.getLibros().add(libro2);
 		autor3.getLibros().add(libro3);
 		autor3.getLibros().add(libro4);
+		
+		libro1.setAutor(autor1);
+		libro2.setAutor(autor2);
+		libro3.setAutor(autor3);
+		libro4.setAutor(autor3);
 		
 		em.getTransaction().begin();
 		
